@@ -10,14 +10,14 @@ function setup(){
 function newDrawing(data){
     noStroke();
     fill(255);
-    ellipse(data.x, data.y, 50,50);
+    ellipse(data.x, data.y, 25,25);
 }
 
 function mouseDragged(){
     console.log('Sending: ' + mouseX + ', ' + mouseY);
     noStroke();
     fill(255);
-    ellipse(mouseX, mouseY, 50,50);
+    ellipse(mouseX, mouseY, 25,25);
     
     var data = {
         x:mouseX,
