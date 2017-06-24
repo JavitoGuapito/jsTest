@@ -5,7 +5,7 @@ var express = require('express')
 var app = express();
 
 //Creamos el objeto servidor y lo ponemos a escuchar en un puerto a traves del metodo de express listen
-var server = app.listen(8000);
+var server = app.listen(8080);
 
 //el metodo use te dice cuales seran los objetos http de la que tendra la funcion middleware(funciones que dan acceso al objeto solicitus y objeto respuesta, es decir, un ciclo de solicitudes respuestas) En este caso todos los de la tarjeta public
 app.use(express.static('public'));
