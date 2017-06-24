@@ -1,7 +1,7 @@
 var socket;
 
 function setup(){
-    createCanvas(500, 500);
+    createCanvas(1000, 1000);
     background(51);
     socket = io.connect();
     socket.on('mouse', newDrawing);
