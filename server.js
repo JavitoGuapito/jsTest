@@ -13,7 +13,7 @@ app.use(express.static('public'));
 console.log("My sockets server is running");
 
 //De nuevo, cargamos el modulo socket.io, el cual se usa para poder realizar direcciones bidireccionales entre servidor y clientes web, con socket io podremos implementar aplicaciones web en tiempo real, como por ejemplo chats. Tiene dos partes, programacion en el cliente y programacion en el lado del server node.js. socket.io utiliza el principalmente protocolo WebSocket el cual proporciona un canal con  conexion bidireccional en TCP, este se implementa en cliente y servidor.
-var socket = require('socket.io')(http);
+var socket = require('socket.io')(server);
 
 //Inicializamo un "objeto" con las funciones que nos ofrece socket.io. Por parametro le pasamo el servidor (inicializado en la variable server y escuchando en un puerto) escuchanndo en un puerto, el cual se usara para el socket. Esto lo usaremos para realizar las conexiones, ya que las queremos de tiempo real y bidireccionales. Lo que escribamos en el lado del cliente lo realizaremos usando socket.io.
 var io = socket(server);
