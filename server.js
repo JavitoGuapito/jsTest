@@ -5,7 +5,7 @@ var express = require('express')
 var app = express();
 
 //Creamos el objeto servidor y lo ponemos a escuchar en un puerto a traves del metodo de express listen
-var server = require('http').Server(app);
+var server = require('http').createServer(app);
 
 //el metodo use te dice cuales seran los objetos http de la que tendra la funcion middleware(funciones que dan acceso al objeto solicitus y objeto respuesta, es decir, un ciclo de solicitudes respuestas) En este caso todos los de la tarjeta public
 app.use(express.static('public'));
@@ -13,11 +13,12 @@ app.use(express.static('public'));
 console.log("My sockets server is running");
 
 //De nuevo, cargamos el modulo socket.io, el cual se usa para poder realizar direcciones bidireccionales entre servidor y clientes web, con socket io podremos implementar aplicaciones web en tiempo real, como por ejemplo chats. Tiene dos partes, programacion en el cliente y programacion en el lado del server node.js. socket.io utiliza el principalmente protocolo WebSocket el cual proporciona un canal con  conexion bidireccional en TCP, este se implementa en cliente y servidor.
-var socket = require('socket.io')(server);
+var socket = require('socket.io').listen(server);
 
 //Inicializamo un "objeto" con las funciones que nos ofrece socket.io. Por parametro le pasamo el servidor (inicializado en la variable server y escuchando en un puerto) escuchanndo en un puerto, el cual se usara para el socket. Esto lo usaremos para realizar las conexiones, ya que las queremos de tiempo real y bidireccionales. Lo que escribamos en el lado del cliente lo realizaremos usando socket.io.
 var io = socket(server);
 
+server.listen(process.env.PORT || 3000);
 //esto se ejecuta cuando se produce un evento. En socket io un evento puede ser por ejemplo que se conecte alguien o se mande un mensaje.
 //Esto por ejemplo es un evento cada vez que entre una nueva conexion(Esto nos lo indica el primer parametro) y lo que hare será ejecutar un metodo dado en el segundo parametro.
 io.sockets.on('connection', newConnection);
